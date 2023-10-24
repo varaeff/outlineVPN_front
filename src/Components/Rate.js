@@ -1,20 +1,25 @@
 import React from "react";
 import "./Rate.css";
+import PropTypes from "prop-types";
 
-function Rate(props) {
+function Rate({ rate }) {
   return (
     <div className="rate">
       <div className="image"></div>
-      <h2>{props.rate.ratename}</h2>
+      <h2>{rate.ratename}</h2>
       <ul>
-        {props.rate.profits.map((profit) => (
+        {rate.profits.map((profit) => (
           <li key={profit}>{profit}</li>
         ))}
       </ul>
-      <h1>{props.rate.price}</h1>
-      <button>Подключить</button>
+      <h1>{rate.price}</h1>
+      <button className="btn">Подключить</button>
     </div>
   );
 }
+
+Rate.propTypes = {
+  rate: PropTypes.object.isRequired,
+};
 
 export default Rate;
