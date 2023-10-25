@@ -1,11 +1,13 @@
 .fdb {
-  width: 220px;
+  max-width: 17%;
+  min-width: 150px;
   padding: 10px;
   border: 2px solid rgb(211, 191, 191);
   border-radius: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
   background-color: #f1f1f1;
+  box-shadow: 2px 5px 12px 1px rgba(128, 120, 120, 0.1);
 }
 
 .topstring {
@@ -24,4 +26,10 @@
   height: 60px;
   justify-content: space-between;
   align-items: center;
+}
+
+.rating {
+  background: url("../img/star.webp") right center no-repeat;
+  background-size: 1rem;
+  padding-right: 1rem;
 }
