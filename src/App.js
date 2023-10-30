@@ -1,4 +1,5 @@
 import React from "react";
+import "normalize.css";
 import "./App.css";
 import DataList from "./Components/DataList";
 import rates from "./Config/rates.json";
