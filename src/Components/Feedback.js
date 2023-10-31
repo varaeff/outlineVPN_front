@@ -1,19 +1,19 @@
 import React from "react";
-import "./Feedback.css";
+import styles from "./Feedback.module.css";
 import PropTypes from "prop-types";
 
 function Feedback({ feedback }) {
   return (
-    <div className="fdb">
-      <div className="topstring">
+    <div className={styles.fdb}>
+      <div className={styles.topstring}>
         {feedback.url ? (
-          <img className="img" src={feedback.url} alt="avatar"></img>
+          <img className={styles.img} src={feedback.url} alt="avatar"></img>
         ) : (
           <div />
         )}
-        <div className="user">
+        <div className={styles.user}>
           <b>{feedback.username}</b>
-          <div className="rating">
+          <div className={styles.rating}>
             <b>{feedback.rating}</b>
           </div>
         </div>

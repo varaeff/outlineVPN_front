@@ -1,0 +1,19 @@
+* {
+  margin-top: 0;
+}
+
+.wrapper {
+  position: relative;
+  max-width: 1200px;
+  margin: auto;
+  padding: 80px 10px 10px 10px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .wrapper {
+    padding: 40px 0px;
+    font-size: small;
+  }
+}
