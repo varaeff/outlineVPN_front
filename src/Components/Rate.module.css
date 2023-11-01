@@ -4,16 +4,16 @@
   min-width: 200px;
   margin: 10px 20px 10px 0;
   padding: 20px;
-  border: 2px solid rgb(211, 191, 191);
+  border: 2px solid #d3bfbf;
   border-radius: 10px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  background-color: #f1f1f1;
+  background-color: #cfe8e8;
   box-shadow: 2px 5px 12px 1px rgba(128, 120, 120, 0.1);
-  transition: background-color ease-in-out 0.5s;
+  transition: background-color ease-in-out 0.5s, color ease-in-out 0.5s;
   user-select: none;
 }
 
@@ -22,8 +22,14 @@
 }
 
 .rate:hover {
-  background-color: #e8cccc;
+  background-color: #9cd1d1;
   cursor: pointer;
+}
+
+.rate:active {
+  background-color: #6f9e9e;
+  color: #fff;
+  box-shadow: none;
 }
 
 .rate:hover div {

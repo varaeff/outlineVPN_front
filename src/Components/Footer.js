@@ -29,7 +29,7 @@ function Footer() {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.left}>
-          <a href="#" className={styles.logo}>
+          <a href="#hero" className={styles.logo}>
             <div className={styles.logo_img} />
           </a>
           <p>
@@ -37,7 +37,7 @@ function Footer() {
           </p>
           <ul className={styles.social_list}>
             {socials.map((item) => (
-              <li className={styles.social_item}>
+              <li className={styles.social_item} key={item.class}>
                 <a href={item.link} className={styles.social_link}>
                   <span
                     className={[styles.social_icon, item.class].join(" ")}
@@ -53,7 +53,7 @@ function Footer() {
             <h3>Скачать Outline VPN</h3>
             <ul>
               {download.map((item) => (
-                <li className={styles.nav_item}>
+                <li className={styles.nav_item} key={item.text}>
                   <a href={item.link} className={styles.nav_link}>
                     {item.text}
                   </a>
@@ -65,7 +65,7 @@ function Footer() {
             <h3>Полезная информация</h3>
             <ul>
               {info.map((item) => (
-                <li className={styles.nav_item}>
+                <li className={styles.nav_item} key={item.text}>
                   <a href={item.link} className={styles.nav_link}>
                     {item.text}
                   </a>

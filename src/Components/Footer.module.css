@@ -3,14 +3,12 @@ ul {
 }
 
 .footer {
-  height: 125px;
   padding: 100px 40px 20px 40px;
-  background: #f1f1f1;
+  background: #cfe8e8;
 }
 
 .container {
   display: flex;
-  align-items: baseline;
   justify-content: space-between;
   height: 100%;
 }
@@ -23,6 +21,7 @@ ul {
 
 .left {
   flex-direction: column;
+  margin-right: 20px;
 }
 
 .logo {
@@ -33,11 +32,8 @@ ul {
   background-size: contain;
 }
 
-.nav_list {
-  margin-right: 55px;
-  display: flex;
-  flex-direction: column;
-  align-items: baseline;
+.nav_list:not(:last-child) {
+  margin-right: 30px;
 }
 
 .nav_list ul {
@@ -49,13 +45,20 @@ ul {
 }
 
 .nav_link {
-  color: #787878;
+  color: #000;
+  opacity: 0.7;
   text-decoration: none;
+}
+
+.nav_link:hover {
+  opacity: 1;
+  text-decoration: underline;
 }
 
 .social_list {
   display: flex;
   align-items: center;
+  padding: 0;
 }
 
 .social_item:not(:last-child) {
@@ -68,6 +71,11 @@ ul {
   background-color: transparent;
   background-size: contain;
   background-position: center center;
+  opacity: 0.7;
+}
+
+.social_icon:hover {
+  opacity: 1;
 }
 
 .social_icon_twitter {
@@ -87,4 +95,20 @@ ul {
   width: 24px;
   height: 17px;
   background-image: url("../img/Email.svg");
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding: 20px 10px;
+  }
+
+  .container {
+    flex-direction: column;
+    font-size: small;
+  }
+
+  .logo {
+    width: 100px;
+    height: 20px;
+  }
 }

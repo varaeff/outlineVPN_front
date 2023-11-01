@@ -6,14 +6,97 @@
   position: relative;
   max-width: 1200px;
   margin: auto;
-  padding: 80px 10px 10px 10px;
+  padding: 10px;
   text-align: center;
   box-sizing: border-box;
 }
 
+.worldmap {
+  width: 100%;
+  height: 540px;
+  background: url("./img/map.png") center top no-repeat;
+  background-size: contain;
+}
+
+.toleft {
+  padding-left: 40px;
+  text-align: left;
+}
+
+.wrapper h2 {
+  padding-top: 40px;
+}
+
+.devcontainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.devices {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.dev1 {
+  background: url("./img/windows.png") center top no-repeat;
+}
+
+.dev2 {
+  background: url("./img/android.png") center top no-repeat;
+}
+
+.dev3 {
+  background: url("./img/apple.png") center top no-repeat;
+}
+
+.dev4 {
+  background: url("./img/linux.png") center top no-repeat;
+}
+
+.dev1,
+.dev2,
+.dev3,
+.dev4 {
+  width: 20%;
+  height: 50px;
+  background-size: contain;
+}
+
+@media (max-width: 890px) {
+  .worldmap {
+    height: 400px;
+  }
+
+  .devices {
+    width: 80%;
+  }
+}
+
 @media (max-width: 640px) {
   .wrapper {
-    padding: 40px 0px;
     font-size: small;
+  }
+
+  .worldmap {
+    height: 300px;
+  }
+
+  .devices {
+    flex-direction: column;
+  }
+
+  .dev1,
+  .dev2,
+  .dev3,
+  .dev4 {
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  .worldmap {
+    height: 200px;
   }
 }
