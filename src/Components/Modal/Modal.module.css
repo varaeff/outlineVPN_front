@@ -1,0 +1,21 @@
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal_body {
+  padding: 50px 20px;
+  width: 80%;
+  border: 2px solid #d3bfbf;
+  border-radius: 10px;
+  background: #ebffff;
+  text-align: center;
+}

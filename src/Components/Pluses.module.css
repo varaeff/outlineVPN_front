@@ -3,8 +3,11 @@
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: stretch;
-  padding: 0 50px 50px 50px;
-  border-bottom: 2px dotted #fdecec;
+  padding: 0 50px 0 50px;
+}
+
+.container h2 {
+  padding: 0;
 }
 
 .left,

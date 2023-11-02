@@ -1,4 +1,8 @@
-.navbar {
+* {
+  box-sizing: border-box;
+}
+
+.container {
   position: fixed;
   left: 0;
   top: 0;
@@ -6,12 +10,18 @@
   margin-bottom: 1rem;
   padding: 10px 100px;
   display: flex;
-  justify-content: space-between;
-  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
   background: #fff;
   box-shadow: -3px -1px 20px 1px rgba(128, 120, 120, 0.1);
   z-index: 100;
-  opacity: 0.9;
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
@@ -21,13 +31,57 @@
   background-size: contain;
 }
 
-@media (max-width: 640px) {
-  .navbar {
+.logo_smallres {
+  display: none;
+  height: 40px;
+  width: 200px;
+  background: url("../img/outline.png") center center no-repeat;
+  background-size: contain;
+}
+
+.nav_list {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav_item {
+  margin-right: 5px;
+}
+
+.nav_link {
+  color: #000;
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.nav_link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+  .container {
     padding: 10px;
   }
+}
 
+@media (max-width: 640px) {
   .logo {
     height: 20px;
-    width: 100px;
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 450px) {
+  .logo {
+    display: none;
+  }
+
+  .logo_smallres {
+    display: block;
   }
 }

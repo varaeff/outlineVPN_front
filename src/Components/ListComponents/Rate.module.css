@@ -44,13 +44,13 @@
 
 .rate li {
   padding-left: 1.5rem;
-  background: url("../img/check.png") left top no-repeat;
+  background: url("/src/img/check.png") left top no-repeat;
   background-size: 1rem;
 }
 
 .image {
   height: 150px;
-  background: url("../img/rate.png") center top no-repeat;
+  background: url("/src/img/rate.png") center top no-repeat;
   background-size: contain;
 }
 
@@ -74,5 +74,10 @@
 @media (max-width: 640px) {
   .rate {
     padding: 5px;
+  }
+
+  .rate h1,
+  .rate h2 {
+    font-size: x-large;
   }
 }

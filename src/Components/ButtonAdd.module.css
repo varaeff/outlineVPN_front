@@ -1,6 +1,6 @@
 .btn {
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: red;
   cursor: pointer;
   opacity: 0.7;
@@ -29,11 +29,12 @@
 
 @media (max-width: 640px) {
   .btn {
-    padding: 0px 10px;
-    border-radius: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
   }
 
   .btn_big {
     padding: 30px;
+    border-radius: 10px;
   }
 }

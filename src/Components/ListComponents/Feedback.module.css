@@ -18,6 +18,7 @@
 
 .topstring {
   display: flex;
+  margin-bottom: 5px;
 }
 
 .img {
@@ -34,9 +35,13 @@
   align-items: center;
 }
 
+.fdb p {
+  text-align: left;
+}
+
 .rating {
   padding-right: 1rem;
-  background: url("../img/star.webp") right center no-repeat;
+  background: url("/src/img/star.webp") right center no-repeat;
   background-size: 1rem;
 }
 

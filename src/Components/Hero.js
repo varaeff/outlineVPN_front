@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonAdd from "./ButtonAdd";
+import Modal from "./Modal/Modal";
 import styles from "./Hero.module.css";
 
 function Hero() {
@@ -119,7 +119,7 @@ function Hero() {
     <section id="hero" className={styles.hero}>
       <div className={styles.container}>
         <div className={styles.left}>
-          <h2>Интернет без блокировок вместе Outline VPN.</h2>
+          <h2>Интернет без блокировок вместе с Outline VPN</h2>
           <p>
             <b>Outline</b> не подведет, когда другие VPN откажут: наш сервис не
             так просто отследить и заблокировать на основе сетей или IP-адресов.
@@ -130,7 +130,7 @@ function Hero() {
         <div className={styles.right}></div>
       </div>
 
-      <ButtonAdd big={true} />
+      <Modal bigbtn={true} />
 
       <div className={styles.stats_container}>
         <div className={styles.stats}>
@@ -145,6 +145,7 @@ function Hero() {
           ))}
         </div>
       </div>
+      <div id="pluses"></div>
     </section>
   );
 }

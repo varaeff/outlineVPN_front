@@ -1,14 +1,31 @@
 * {
   margin-top: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 .wrapper {
   position: relative;
   max-width: 1200px;
   margin: auto;
-  padding: 10px;
+  padding: 0 10px 40px 10px;
   text-align: center;
-  box-sizing: border-box;
+}
+
+.wrapper_bkg {
+  padding: 40px calc((100vw - 1200px) / 2);
+  text-align: center;
+  background: #ebffff;
+}
+
+.wrapper_bottom {
+  transform: translate(0, 100px);
+  padding: 0 10px 100px 10px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  z-index: 5;
+  background: #fff;
+  box-shadow: 2px 5px 12px 1px rgba(128, 120, 120, 0.1);
 }
 
 .worldmap {
@@ -21,10 +38,6 @@
 .toleft {
   padding-left: 40px;
   text-align: left;
-}
-
-.wrapper h2 {
-  padding-top: 40px;
 }
 
 .devcontainer {
@@ -55,13 +68,29 @@
   background: url("./img/linux.png") center top no-repeat;
 }
 
-.dev1,
-.dev2,
-.dev3,
-.dev4 {
+.devices li {
   width: 20%;
   height: 50px;
   background-size: contain;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.container h2 {
+  font-size: 30px;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 890px) {
@@ -87,16 +116,22 @@
     flex-direction: column;
   }
 
-  .dev1,
-  .dev2,
-  .dev3,
-  .dev4 {
+  .devices li {
     width: 80%;
+    margin-bottom: 10px;
   }
 }
 
 @media (max-width: 500px) {
   .worldmap {
     height: 200px;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .container h2 {
+    font-size: large;
   }
 }

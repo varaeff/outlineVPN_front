@@ -13,16 +13,31 @@ function Footer() {
     { link: "#", text: "FAQ" },
     { link: "#", text: "Tutorials" },
     { link: "#", text: "About Us" },
-    { link: "#", text: "Privacy Policy" },
-    { link: "#", text: "Terms of Service" },
+    { link: "https://travelvpn.net/privacy.html", text: "Privacy Policy" },
+    { link: "https://travelvpn.net/terms.html", text: "Terms of Service" },
   ];
 
   const download = [
-    { link: "#", text: "На iPhone" },
-    { link: "#", text: "На Android" },
-    { link: "#", text: "На Windows" },
-    { link: "#", text: "На Linux" },
-    { link: "#", text: "На Mac" },
+    {
+      link: "https://apps.apple.com/ru/app/outline-app/id1356177741",
+      text: "На iPhone",
+    },
+    {
+      link: "https://play.google.com/store/apps/details?id=org.outline.android.client",
+      text: "На Android",
+    },
+    {
+      link: "https://s3.amazonaws.com/outline-releases/client/windows/stable/Outline-Client.exe",
+      text: "На Windows",
+    },
+    {
+      link: "https://s3.amazonaws.com/outline-releases/client/linux/stable/Outline-Client.AppImage",
+      text: "На Linux",
+    },
+    {
+      link: "https://apps.apple.com/us/app/outline-secure-internet-access/id1356178125?mt=12",
+      text: "На Mac",
+    },
   ];
 
   return (
@@ -51,10 +66,15 @@ function Footer() {
         <div className={styles.right}>
           <nav className={styles.nav_list}>
             <h3>Скачать Outline VPN</h3>
-            <ul>
+            <ul id="download">
               {download.map((item) => (
                 <li className={styles.nav_item} key={item.text}>
-                  <a href={item.link} className={styles.nav_link}>
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.nav_link}
+                  >
                     {item.text}
                   </a>
                 </li>
@@ -66,7 +86,12 @@ function Footer() {
             <ul>
               {info.map((item) => (
                 <li className={styles.nav_item} key={item.text}>
-                  <a href={item.link} className={styles.nav_link}>
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.nav_link}
+                  >
                     {item.text}
                   </a>
                 </li>
