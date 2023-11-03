@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/outlineVPN_front/static/css/main.2f6fb681.css",
+    "main.js": "/outlineVPN_front/static/js/main.d2c86810.js",
+    "static/js/787.7bf8f1a3.chunk.js": "/outlineVPN_front/static/js/787.7bf8f1a3.chunk.js",
+    "static/media/map.png": "/outlineVPN_front/static/media/map.ba165032f43f5c209b54.png",
+    "static/media/rate.png": "/outlineVPN_front/static/media/rate.b2a7e1fdb34b0b884c91.png",
+    "static/media/outline_hero.png": "/outlineVPN_front/static/media/outline_hero.fcc7043fcef3ae4bcfb7.png",
+    "static/media/pluses.webp": "/outlineVPN_front/static/media/pluses.b530eb94e1b78ef30608.webp",
+    "static/media/outline.png": "/outlineVPN_front/static/media/outline.4b6237433703b0774b47.png",
+    "static/media/star.webp": "/outlineVPN_front/static/media/star.e34ce62a61620f3ee423.webp",
+    "static/media/Twitter.svg": "/outlineVPN_front/static/media/Twitter.04449415bc2d07dcfde2.svg",
+    "static/media/Linkedin.svg": "/outlineVPN_front/static/media/Linkedin.81e78e0011b5eaba3854.svg",
+    "static/media/Email.svg": "/outlineVPN_front/static/media/Email.2192131b5484cd209aa2.svg",
+    "index.html": "/outlineVPN_front/index.html",
+    "main.2f6fb681.css.map": "/outlineVPN_front/static/css/main.2f6fb681.css.map",
+    "main.d2c86810.js.map": "/outlineVPN_front/static/js/main.d2c86810.js.map",
+    "787.7bf8f1a3.chunk.js.map": "/outlineVPN_front/static/js/787.7bf8f1a3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2f6fb681.css",
+    "static/js/main.d2c86810.js"
+  ]
+}
