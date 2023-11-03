@@ -19,3 +19,61 @@
   background: #ebffff;
   text-align: center;
 }
+
+.instruction {
+  display: flex;
+  justify-content: center;
+}
+
+.modal_body p {
+  text-align: left;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input {
+  height: 40px;
+  border-radius: 30px;
+  margin-bottom: 15px;
+}
+
+.input {
+  padding: 0 30px;
+  border: 1px solid #dadada;
+  border-radius: 30px;
+}
+
+.input::placeholder {
+  color: #787878;
+}
+
+.invis {
+  opacity: 0;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.sent {
+  padding: 20px;
+  transition: opacity ease-in-out 1s;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+}

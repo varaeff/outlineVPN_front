@@ -2,11 +2,11 @@ import React from "react";
 import styles from "./ButtonAdd.module.css";
 import PropTypes from "prop-types";
 
-function ButtonAdd({ big, text, clicking }) {
+function ButtonAdd({ big, text, onClick }) {
   const btnStyle = big ? [styles.btn, styles.btn_big].join(" ") : styles.btn;
 
   return (
-    <button className={btnStyle} onClick={clicking}>
+    <button className={btnStyle} onClick={onClick}>
       {text}
     </button>
   );
@@ -15,7 +15,7 @@ function ButtonAdd({ big, text, clicking }) {
 ButtonAdd.propTypes = {
   big: PropTypes.bool,
   text: PropTypes.string.isRequired,
-  clicking: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 export default ButtonAdd;

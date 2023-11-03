@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./Footer.module.css";
+import PropTypes from "prop-types";
 
-function Footer() {
+function Footer({ download }) {
   const socials = [
     { link: "#", class: styles.social_icon_twitter },
     { link: "#", class: styles.social_icon_linkedin },
@@ -15,29 +16,6 @@ function Footer() {
     { link: "#", text: "About Us" },
     { link: "https://travelvpn.net/privacy.html", text: "Privacy Policy" },
     { link: "https://travelvpn.net/terms.html", text: "Terms of Service" },
-  ];
-
-  const download = [
-    {
-      link: "https://apps.apple.com/ru/app/outline-app/id1356177741",
-      text: "На iPhone",
-    },
-    {
-      link: "https://play.google.com/store/apps/details?id=org.outline.android.client",
-      text: "На Android",
-    },
-    {
-      link: "https://s3.amazonaws.com/outline-releases/client/windows/stable/Outline-Client.exe",
-      text: "На Windows",
-    },
-    {
-      link: "https://s3.amazonaws.com/outline-releases/client/linux/stable/Outline-Client.AppImage",
-      text: "На Linux",
-    },
-    {
-      link: "https://apps.apple.com/us/app/outline-secure-internet-access/id1356178125?mt=12",
-      text: "На Mac",
-    },
   ];
 
   return (
@@ -66,7 +44,7 @@ function Footer() {
         <div className={styles.right}>
           <nav className={styles.nav_list}>
             <h3>Скачать Outline VPN</h3>
-            <ul id="download">
+            <ul>
               {download.map((item) => (
                 <li className={styles.nav_item} key={item.text}>
                   <a
@@ -103,5 +81,9 @@ function Footer() {
     </footer>
   );
 }
+
+Footer.propTypes = {
+  download: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default Footer;

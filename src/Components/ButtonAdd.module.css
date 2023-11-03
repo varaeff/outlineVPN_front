@@ -1,6 +1,7 @@
 .btn {
   padding: 10px;
   border-radius: 10px;
+  max-width: fit-content;
   background-color: red;
   cursor: pointer;
   opacity: 0.7;
