@@ -1,8 +1,11 @@
 import React from "react";
-import Modal from "./Modal/Modal";
+import PropTypes from "prop-types";
+
+import ButtonAdd from "./ButtonAdd";
+
 import styles from "./Hero.module.css";
 
-function Hero() {
+function Hero({ setOpen }) {
   const params = [
     {
       img: (
@@ -130,7 +133,11 @@ function Hero() {
         <div className={styles.right}></div>
       </div>
 
-      <Modal bigbtn={true} />
+      <ButtonAdd
+        big={true}
+        text="Подключить&nbsp;ВПН"
+        onClick={() => setOpen(true)}
+      />
 
       <div className={styles.stats_container}>
         <div className={styles.stats}>
@@ -149,5 +156,9 @@ function Hero() {
     </section>
   );
 }
+
+Hero.propTypes = {
+  setOpen: PropTypes.func.isRequired,
+};
 
 export default Hero;

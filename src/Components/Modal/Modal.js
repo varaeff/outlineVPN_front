@@ -1,12 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
 import emailjs from "@emailjs/browser";
+import PropTypes from "prop-types";
 
 import ButtonAdd from "../ButtonAdd";
 import styles from "./Modal.module.css";
 
-function Modal({ bigbtn }) {
-  const [open, setOpen] = React.useState(false);
+function Modal({ open, setOpen }) {
   const [show, setShow] = React.useState(false);
   const [mail, setMail] = React.useState("");
   const [invalid, setInvalid] = React.useState(true);
@@ -67,12 +66,6 @@ function Modal({ bigbtn }) {
 
   return (
     <React.Fragment>
-      <ButtonAdd
-        big={bigbtn}
-        text="Подключить&nbsp;ВПН"
-        onClick={() => setOpen(true)}
-      />
-
       {open && (
         <div className={styles.modal}>
           <div className={styles.modal_body}>
@@ -127,7 +120,8 @@ function Modal({ bigbtn }) {
 }
 
 Modal.propTypes = {
-  bigbtn: PropTypes.bool,
+  open: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func.isRequired,
 };
 
 export default Modal;

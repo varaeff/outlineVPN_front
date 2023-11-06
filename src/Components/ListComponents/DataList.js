@@ -12,7 +12,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./DataList.css";
 
-function DataList({ data, component }) {
+function DataList({ data, component, setOpen }) {
   return (
     <Swiper
       autoplay={
@@ -44,7 +44,7 @@ function DataList({ data, component }) {
       {component === "Rate"
         ? data.map((rate) => (
             <SwiperSlide key={rate.id}>
-              <Rate rate={rate} />
+              <Rate rate={rate} setOpen={setOpen} />
             </SwiperSlide>
           ))
         : data.map((feedback) => (
@@ -59,6 +59,7 @@ function DataList({ data, component }) {
 DataList.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   component: PropTypes.string.isRequired,
+  setOpen: PropTypes.func,
 };
 
 export default DataList;

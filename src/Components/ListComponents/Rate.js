@@ -1,10 +1,11 @@
 import React from "react";
-import styles from "./Rate.module.css";
 import PropTypes from "prop-types";
 
-function Rate({ rate }) {
+import styles from "./Rate.module.css";
+
+function Rate({ rate, setOpen }) {
   return (
-    <div className={styles.rate}>
+    <div className={styles.rate} onClick={() => setOpen(true)}>
       <div>
         <div className={styles.image}></div>
         <h2>{rate.ratename}</h2>
@@ -26,6 +27,7 @@ function Rate({ rate }) {
 
 Rate.propTypes = {
   rate: PropTypes.object.isRequired,
+  setOpen: PropTypes.func.isRequired,
 };
 
 export default Rate;

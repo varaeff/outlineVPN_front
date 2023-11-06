@@ -1,8 +1,11 @@
 import React from "react";
-import Modal from "./Modal/Modal";
+import PropTypes from "prop-types";
+
+import ButtonAdd from "./ButtonAdd";
+
 import styles from "./NavBar.module.css";
 
-function NavBar() {
+function NavBar({ setOpen }) {
   const links = [
     { text: "Преимущества", lnk: "#pluses" },
     { text: "Цены", lnk: "#prices" },
@@ -23,10 +26,18 @@ function NavBar() {
             </li>
           ))}
         </ul>
-        <Modal bigbtn={false} />
+        <ButtonAdd
+          big={false}
+          text="Подключить&nbsp;ВПН"
+          onClick={() => setOpen(true)}
+        />
       </nav>
     </div>
   );
 }
+
+NavBar.propTypes = {
+  setOpen: PropTypes.func.isRequired,
+};
 
 export default NavBar;
