@@ -1,17 +1,19 @@
 import React from "react";
+import PropTypes from "prop-types";
+import emailjs from "@emailjs/browser";
+
 import ButtonAdd from "../ButtonAdd";
 import styles from "./Modal.module.css";
-import PropTypes from "prop-types";
 
 function Modal({ bigbtn }) {
   const [open, setOpen] = React.useState(false);
   const [show, setShow] = React.useState(false);
-  const [male, setMale] = React.useState("");
+  const [mail, setMail] = React.useState("");
   const [invalid, setInvalid] = React.useState(true);
 
   const EMAIL_REGEXP =
     /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
-  const success = `Успех! Проверьте ваш почтовый ящик ${male} для получения ключа доступа!`;
+  const success = `Успех! Проверьте ваш почтовый ящик ${mail} для получения ключа доступа!`;
   const unsuccess = "Введённый вами email некорректен!!!";
 
   function isEmailValid(value) {
@@ -19,24 +21,42 @@ function Modal({ bigbtn }) {
   }
 
   function setEmail(e) {
-    setMale(e.target.value);
+    setMail(e.target.value);
   }
 
   function closeModal() {
     setShow(false);
-    setMale("");
+    setMail("");
     setOpen(false);
   }
 
   function checkEmail(e) {
     e.preventDefault();
-    if (isEmailValid(male)) {
+    if (isEmailValid(mail)) {
+      emailjs
+        .send(
+          "service_t3mtqxy",
+          "template_kz19cyd",
+          {
+            mailto: mail,
+            message: "testtesttest",
+          },
+          "UlPgQ96Acqs9FSPUQ"
+        )
+        .then(
+          function (responce) {
+            console.log("SUCCESS!", responce.status, responce.text);
+          },
+          function (error) {
+            console.log("FAILED!", error);
+          }
+        );
       setInvalid(false);
       setShow(true);
       setTimeout(() => {
         setOpen(false);
         setShow(false);
-        setMale("");
+        setMail("");
         setInvalid(true);
       }, 4000);
     } else {

@@ -10,12 +10,16 @@ function Footer({ download }) {
   ];
 
   const info = [
-    { link: "#", text: "OutlineVPN" },
-    { link: "#", text: "FAQ" },
-    { link: "#", text: "Tutorials" },
-    { link: "#", text: "About Us" },
-    { link: "https://travelvpn.net/privacy.html", text: "Privacy Policy" },
-    { link: "https://travelvpn.net/terms.html", text: "Terms of Service" },
+    { link: "https://getoutline.org/ru/how-it-works/", text: "Принцип работы" },
+    { link: "https://getoutline.org/ru/get-started/", text: "Начало работы" },
+    {
+      link: "https://getoutline.org/ru/for-developers/",
+      text: "Для разработчиков",
+    },
+    {
+      link: "https://getoutline.org/ru/faq/",
+      text: "Часто задаваемые вопросы",
+    },
   ];
 
   return (
