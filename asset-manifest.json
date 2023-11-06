@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/outlineVPN_front/static/css/main.2f6fb681.css",
-    "main.js": "/outlineVPN_front/static/js/main.d2c86810.js",
+    "main.js": "/outlineVPN_front/static/js/main.87d3bf1a.js",
     "static/js/787.7bf8f1a3.chunk.js": "/outlineVPN_front/static/js/787.7bf8f1a3.chunk.js",
     "static/media/map.png": "/outlineVPN_front/static/media/map.ba165032f43f5c209b54.png",
     "static/media/rate.png": "/outlineVPN_front/static/media/rate.b2a7e1fdb34b0b884c91.png",
@@ -14,11 +14,11 @@
     "static/media/Email.svg": "/outlineVPN_front/static/media/Email.2192131b5484cd209aa2.svg",
     "index.html": "/outlineVPN_front/index.html",
     "main.2f6fb681.css.map": "/outlineVPN_front/static/css/main.2f6fb681.css.map",
-    "main.d2c86810.js.map": "/outlineVPN_front/static/js/main.d2c86810.js.map",
+    "main.87d3bf1a.js.map": "/outlineVPN_front/static/js/main.87d3bf1a.js.map",
     "787.7bf8f1a3.chunk.js.map": "/outlineVPN_front/static/js/787.7bf8f1a3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2f6fb681.css",
-    "static/js/main.d2c86810.js"
+    "static/js/main.87d3bf1a.js"
   ]
 }
