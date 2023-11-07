@@ -5,7 +5,9 @@ import PropTypes from "prop-types";
 import ButtonAdd from "../ButtonAdd";
 import styles from "./Modal.module.css";
 
-function Modal({ open, setOpen }) {
+import rates from "../../Config/rates.json";
+
+function Modal({ open, setOpen, rateId, setRateId }) {
   const [show, setShow] = React.useState(false);
   const [mail, setMail] = React.useState("");
   const [invalid, setInvalid] = React.useState(true);
@@ -13,7 +15,7 @@ function Modal({ open, setOpen }) {
   const EMAIL_REGEXP =
     /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
   const success = `Успех! Проверьте ваш почтовый ящик ${mail} для получения ключа доступа!`;
-  const unsuccess = "Введённый вами email некорректен!!!";
+  const unsuccess = `Введённый вами email некорректен!!!`;
 
   function isEmailValid(value) {
     return EMAIL_REGEXP.test(value);
@@ -26,11 +28,13 @@ function Modal({ open, setOpen }) {
   function closeModal() {
     setShow(false);
     setMail("");
+    setRateId(1);
     setOpen(false);
   }
 
   function checkEmail(e) {
     e.preventDefault();
+    const variant = rates.filter((rate) => rate.id === rateId);
     if (isEmailValid(mail)) {
       emailjs
         .send(
@@ -38,7 +42,7 @@ function Modal({ open, setOpen }) {
           "template_kz19cyd",
           {
             mailto: mail,
-            message: "testtesttest",
+            message: `${variant[0].price}`,
           },
           "UlPgQ96Acqs9FSPUQ"
         )
@@ -57,6 +61,7 @@ function Modal({ open, setOpen }) {
         setShow(false);
         setMail("");
         setInvalid(true);
+        setRateId(1);
       }, 4000);
     } else {
       setInvalid(true);
@@ -72,14 +77,14 @@ function Modal({ open, setOpen }) {
             <h2>Получение ключа доступа к OutlineVPN</h2>
             <div className={styles.instruction}>
               <p>
-                Для получения пробного ключа доступа просто укажите свой e-mail
-                адрес ниже и нажмите кнопку <b>Получить ключ</b>.
-                <br />
-                <b>Внимание!!!</b>
-                <br />
+                Для получения ключа доступа просто укажите свой e-mail адрес
+                ниже и нажмите кнопку <b>Получить ключ</b>.
+              </p>
+              <p>
                 Указывайте свой <b>реальный</b> почтовый адрес, так как именно
                 на него вам будет отправлен ключ доступа!
-                <br />
+              </p>
+              <p>
                 Пробный ключ сроком действия на 7 дней может быть получен только
                 один раз.
               </p>
@@ -92,6 +97,23 @@ function Modal({ open, setOpen }) {
               ].join(" ")}
               onSubmit={(e) => checkEmail(e)}
             >
+              <div className={styles.radios}>
+                {rates.map((rate) => (
+                  <div className={styles.radiogroup} key={rate.id}>
+                    <input
+                      className={styles.radio}
+                      id={rate.id}
+                      defaultChecked={rate.id === rateId}
+                      value={rate.id}
+                      name="rates"
+                      type="radio"
+                      onChange={() => setRateId(rate.id)}
+                    />
+                    <label htmlFor={rate.id}>{rate.price}</label>
+                  </div>
+                ))}
+              </div>
+
               <input
                 type="email"
                 name="email"
@@ -122,6 +144,8 @@ function Modal({ open, setOpen }) {
 Modal.propTypes = {
   open: PropTypes.bool.isRequired,
   setOpen: PropTypes.func.isRequired,
+  rateId: PropTypes.number.isRequired,
+  setRateId: PropTypes.func.isRequired,
 };
 
 export default Modal;

@@ -198,6 +198,7 @@ function App() {
   ];
 
   const [open, setOpen] = React.useState(false);
+  const [rateId, setRateId] = React.useState(1);
 
   return (
     <React.Fragment>
@@ -215,7 +216,12 @@ function App() {
           <br />
           Для оплаты нужна только электронная почта.
         </p>
-        <DataList data={rates} component="Rate" setOpen={setOpen} />
+        <DataList
+          data={rates}
+          component="Rate"
+          setOpen={setOpen}
+          setRateId={setRateId}
+        />
 
         <h2>
           Сверхбыстрые <br /> серверы <br /> в 30 странах
@@ -270,7 +276,12 @@ function App() {
         </div>
       </div>
       <Footer download={download} />
-      <Modal open={open} setOpen={setOpen} />
+      <Modal
+        open={open}
+        setOpen={setOpen}
+        rateId={rateId}
+        setRateId={setRateId}
+      />
     </React.Fragment>
   );
 }

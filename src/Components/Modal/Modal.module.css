@@ -21,8 +21,7 @@
 }
 
 .instruction {
-  display: flex;
-  justify-content: center;
+  padding: 0 20px;
 }
 
 .modal_body p {
@@ -76,4 +75,19 @@
   font-size: 30px;
   color: #fff;
   cursor: pointer;
+}
+
+.radios {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.radiogroup {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.radio {
+  margin-right: 10px;
 }

@@ -3,9 +3,15 @@ import PropTypes from "prop-types";
 
 import styles from "./Rate.module.css";
 
-function Rate({ rate, setOpen }) {
+function Rate({ rate, setOpen, setRateId }) {
   return (
-    <div className={styles.rate} onClick={() => setOpen(true)}>
+    <div
+      className={styles.rate}
+      onClick={() => {
+        setOpen(true);
+        setRateId(rate.id);
+      }}
+    >
       <div>
         <div className={styles.image}></div>
         <h2>{rate.ratename}</h2>
@@ -28,6 +34,7 @@ function Rate({ rate, setOpen }) {
 Rate.propTypes = {
   rate: PropTypes.object.isRequired,
   setOpen: PropTypes.func.isRequired,
+  setRateId: PropTypes.func.isRequired,
 };
 
 export default Rate;
