@@ -1,0 +1,206 @@
+const https = require("node:https");
+const axios = require("axios");
+
+class OutlineKey {
+  /**
+   * Describes a key in the Outline server
+   * @param {string} key_id - The ID of the key
+   * @param {string} name - The name of the key
+   * @param {string} password - The password of the key
+   * @param {number} port - The port of the key
+   * @param {string} method - The method of the key
+   * @param {string} access_url - The access URL of the key
+   * @param {number} used_bytes - The used bytes by the key
+   * @param {number|null} data_limit - The data limit of the key (optional)
+   */
+  constructor(
+    key_id,
+    name,
+    password,
+    port,
+    method,
+    access_url,
+    used_bytes,
+    data_limit
+  ) {
+    this.key_id = key_id;
+    this.name = name;
+    this.password = password;
+    this.port = port;
+    this.method = method;
+    this.access_url = access_url;
+    this.used_bytes = used_bytes;
+    this.data_limit = data_limit || null;
+  }
+}
+
+class OutlineServerErrorException {
+  /**
+   * Represents an exception for Outline VPN server errors
+   * @param {string} message - The error message
+   */
+  constructor(message) {
+    this.message = message;
+  }
+}
+
+class FingerprintAdapter extends https.Agent {
+  /**
+   * This adapter injected into the requests session will check that the
+   * fingerprint for the certificate matches for every request
+   * @param {string} fingerprint - The fingerprint for the certificate
+   * @param {object} options - Additional options for the adapter
+   */
+  constructor(fingerprint, options = {}) {
+    super(options);
+    this.fingerprint = fingerprint;
+  }
+
+  createConnection(options, callback) {
+    const socket = super.createConnection(options, callback);
+
+    socket.on("secureConnect", () => {
+      const remoteCert = socket.getPeerCertificate();
+      if (!this.checkFingerprint(remoteCert)) {
+        socket.destroy(new Error("Fingerprint does not match."));
+      }
+    });
+
+    return socket;
+  }
+
+  checkFingerprint(remoteCert) {
+    const remoteFingerprint = remoteCert && remoteCert.fingerprint;
+    return (
+      remoteFingerprint &&
+      remoteFingerprint.toLowerCase() === this.fingerprint.toLowerCase()
+    );
+  }
+}
+
+class OutlineVPN {
+  /**
+   * An Outline VPN connection
+   * @param {string} api_url - The API URL of the Outline server
+   * @param {string|null} cert_sha256 - The SHA256 fingerprint of the certificate (optional)
+   */
+  constructor(
+    api_url = "https://103.97.88.30:40800/kZCw9g41wN68edwlaZ7Y0A",
+    cert_sha256 = "3D51076DEF3FA1900BF68487BC078E4BC95ECC12AD35FF56BD166883A14650E1"
+  ) {
+    this.api_url = api_url;
+
+    if (cert_sha256) {
+      this.session = axios.create({
+        baseURL: api_url,
+        httpsAgent: new FingerprintAdapter(cert_sha256),
+      });
+    } else {
+      this.session = axios.create({ baseURL: api_url });
+    }
+  }
+
+  async get_keys() {
+    try {
+      const [response, responseMetrics] = await Promise.all([
+        this.session.get("/access-keys/"),
+        this.session.get("/metrics/transfer"),
+      ]);
+
+      if (response.status === 200 && "accessKeys" in response.data) {
+        const { bytesTransferredByUserId } = responseMetrics.data;
+
+        return response.data.accessKeys.map(
+          (key) =>
+            new OutlineKey(
+              key.id,
+              key.name,
+              key.password,
+              key.port,
+              key.method,
+              key.accessUrl,
+              bytesTransferredByUserId[key.id] || 0,
+              key.dataLimit?.bytes || null
+            )
+        );
+      }
+
+      throw new OutlineServerErrorException("Unable to retrieve keys");
+    } catch (error) {
+      if (error.response) {
+        throw new OutlineServerErrorException(
+          `HTTP error: ${error.response.status}`
+        );
+      } else if (error.request) {
+        throw new OutlineServerErrorException(
+          "No response received from the server"
+        );
+      } else {
+        throw error;
+      }
+    }
+  }
+
+  async create_key(key_name = null) {
+    try {
+      const response = await this.session.post("/access-keys/");
+      if (response.status === 201) {
+        const key = response.data;
+        const outlineKey = new OutlineKey(
+          key.id,
+          key.name,
+          key.password,
+          key.port,
+          key.method,
+          key.accessUrl,
+          0,
+          null
+        );
+
+        if (key_name && (await this.rename_key(outlineKey.key_id, key_name))) {
+          outlineKey.name = key_name;
+        }
+
+        return outlineKey;
+      }
+
+      throw new OutlineServerErrorException("Unable to create key");
+    } catch (error) {
+      if (error.response) {
+        throw new OutlineServerErrorException(
+          `HTTP error: ${error.response.status}`
+        );
+      } else if (error.request) {
+        throw new OutlineServerErrorException(
+          "No response received from the server"
+        );
+      } else {
+        throw error;
+      }
+    }
+  }
+
+  async add_data_limit(key_id, limit_bytes) {
+    try {
+      const response = await this.session.put(
+        `/access-keys/${key_id}/data-limit`,
+        { limit: { bytes: limit_bytes } }
+      );
+      return response.status === 204;
+    } catch (error) {
+      if (error.response) {
+        throw new OutlineServerErrorException(
+          `HTTP error: ${error.response.status}`
+        );
+      } else if (error.request) {
+        throw new OutlineServerErrorException(
+          "No response received from the server"
+        );
+      } else {
+        throw error;
+      }
+    }
+  }
+}
+
+export default OutlineVPN;

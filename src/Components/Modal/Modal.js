@@ -6,16 +6,19 @@ import ButtonAdd from "../ButtonAdd";
 import styles from "./Modal.module.css";
 
 import rates from "../../Config/rates.json";
+import OutlineVPN from "../../Api";
 
 function Modal({ open, setOpen, rateId, setRateId }) {
   const [show, setShow] = React.useState(false);
   const [mail, setMail] = React.useState("");
   const [invalid, setInvalid] = React.useState(true);
+  const [unsuccess, setUnsuccess] = React.useState(
+    `Введённый вами email некорректен!!!`
+  );
 
   const EMAIL_REGEXP =
     /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
   const success = `Успех! Проверьте ваш почтовый ящик ${mail} для получения ключа доступа!`;
-  const unsuccess = `Введённый вами email некорректен!!!`;
 
   function isEmailValid(value) {
     return EMAIL_REGEXP.test(value);
@@ -34,39 +37,55 @@ function Modal({ open, setOpen, rateId, setRateId }) {
 
   function checkEmail(e) {
     e.preventDefault();
-    const variant = rates.filter((rate) => rate.id === rateId);
     if (isEmailValid(mail)) {
-      emailjs
-        .send(
-          "service_t3mtqxy",
-          "template_kz19cyd",
-          {
-            mailto: mail,
-            message: `${variant[0].price}`,
-          },
-          "UlPgQ96Acqs9FSPUQ"
-        )
-        .then(
-          function (responce) {
-            console.log("SUCCESS!", responce.status, responce.text);
-          },
-          function (error) {
-            console.log("FAILED!", error);
-          }
-        );
-      setInvalid(false);
-      setShow(true);
-      setTimeout(() => {
-        setOpen(false);
-        setShow(false);
-        setMail("");
-        setInvalid(true);
-        setRateId(1);
-      }, 4000);
+      const VPN = new OutlineVPN();
+      VPN.create_key(mail).then((data) => {
+        if (data !== undefined) {
+          const key_id = data.id;
+          const key_url = data.accessUrl;
+          console.log(
+            `key_id: ${key_id}\ne-mail: ${mail}\nkey_url: ${key_url}`
+          );
+          emailjs
+            .send(
+              "service_t3mtqxy",
+              "template_kz19cyd",
+              {
+                mailto: mail,
+                message: `${key_url}\nCкопируйте его.\nОткройте клиент Outline.\nЕсли ваш ключ доступа определился автоматически, нажмите "Подключиться".\nЕсли этого не произошло, вставьте ключ в поле и нажмите "Подключиться"`,
+              },
+              "UlPgQ96Acqs9FSPUQ"
+            )
+            .then(
+              (responce) => {
+                console.log("SUCCESS!", responce.status, responce.text);
+              },
+              (error) => {
+                console.log("FAILED!", error);
+              }
+            );
+          setInvalid(false);
+          setTimeout(() => {
+            setUnsuccess(`Введённый вами email некорректен!!!`);
+            setOpen(false);
+            setShow(false);
+            setMail("");
+            setInvalid(true);
+            setRateId(1);
+          }, 4000);
+        } else {
+          setUnsuccess(
+            `Ошибка соединения с сервером OutlineVPN. Повторите попытку позже.`
+          );
+          console.log(unsuccess);
+          setInvalid(true);
+        }
+      });
     } else {
+      setUnsuccess(`Введённый вами email некорректен!!!`);
       setInvalid(true);
-      setShow(true);
     }
+    setShow(true);
   }
 
   return (

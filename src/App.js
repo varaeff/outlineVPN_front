@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import OutlineVPN from "./Api";
 
 import "normalize.css";
 import styles from "./App.module.css";
@@ -199,6 +200,11 @@ function App() {
 
   const [open, setOpen] = React.useState(false);
   const [rateId, setRateId] = React.useState(1);
+
+  useEffect(() => {
+    const VPN = new OutlineVPN();
+    VPN.get_server_info().then((data) => console.log(data));
+  }, []);
 
   return (
     <React.Fragment>
