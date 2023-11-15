@@ -16,11 +16,18 @@ class OutlineVPN {
     }
   }
 
-  async create_key() {
+  async create_key(name) {
     try {
       const response = await axios.post(`${this.api_url}/access-keys`);
       if (response.status === 201) {
-        return response.data;
+        response.data.name = name;
+        const response_1 = await axios.put(
+          `${this.api_url}/access-keys/${response.data.id}/name`,
+          { name: name }
+        );
+        if (response_1.status === 204) {
+          return response.data;
+        }
       }
     } catch (err) {
       console.error(err);
