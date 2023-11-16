@@ -28,7 +28,7 @@ function NavBar({ setOpen }) {
         </ul>
         <ButtonAdd
           big={false}
-          text="Подключить&nbsp;ВПН"
+          text="Подключить ВПН"
           onClick={() => setOpen(true)}
         />
       </nav>
