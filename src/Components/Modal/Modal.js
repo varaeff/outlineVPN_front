@@ -65,6 +65,7 @@ function Modal({ open, setOpen, rateId, setRateId }) {
               }
             );
           setInvalid(false);
+          setShow(true);
           setTimeout(() => {
             setUnsuccess(`Введённый вами email некорректен!!!`);
             setOpen(false);
@@ -77,15 +78,15 @@ function Modal({ open, setOpen, rateId, setRateId }) {
           setUnsuccess(
             `Ошибка соединения с сервером OutlineVPN. Повторите попытку позже.`
           );
-          console.log(unsuccess);
           setInvalid(true);
+          setShow(true);
         }
       });
     } else {
       setUnsuccess(`Введённый вами email некорректен!!!`);
       setInvalid(true);
+      setShow(true);
     }
-    setShow(true);
   }
 
   return (

@@ -104,3 +104,13 @@
     width: 95%;
   }
 }
+
+@media (max-width: 450px) {
+  .stats {
+    font-size: xx-small;
+  }
+
+  .stats h5 {
+    font-size: xx-small;
+  }
+}

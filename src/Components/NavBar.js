@@ -9,7 +9,7 @@ function NavBar({ setOpen }) {
   const links = [
     { text: "Преимущества", lnk: "#pluses" },
     { text: "Цены", lnk: "#prices" },
-    { text: "Скачать ВПН", lnk: "#download" },
+    { text: "Скачать", lnk: "#download" },
   ];
 
   return (
